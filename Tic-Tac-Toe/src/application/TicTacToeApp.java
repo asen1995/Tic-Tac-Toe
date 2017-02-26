@@ -40,6 +40,10 @@ public class TicTacToeApp extends Application {
 	private static List<Combo> combos = new ArrayList<>();
 	private Pane root = new Pane();
 
+	private static byte xWins, oWins;
+
+	private static ExitWindow exitWindow = new ExitWindow();
+
 	private Parent createContent() {
 
 		root.setPrefSize(600, 600);
@@ -139,6 +143,12 @@ public class TicTacToeApp extends Application {
 	 */
 	private static void playWinnerAnimation(Combo combo) {
 
+		if (combo.tiles[0].getText().getText().equalsIgnoreCase("X")) {
+			xWins++;
+		} else {
+			oWins++;
+		}
+
 		for (int i = 0; i < combo.tiles.length; i++) {
 			combo.tiles[i].colorTheBorder();
 			combo.tiles[i].getText().setFill(Color.YELLOW);
@@ -154,6 +164,13 @@ public class TicTacToeApp extends Application {
 
 		primaryStage.setScene(new Scene(createContent()));
 		primaryStage.show();
+		primaryStage.setOnCloseRequest(event -> {
+			event.consume();
+			exitWindow.display("Are you really wanna exit the game", xWins, oWins,primaryStage);
+			System.out.println("x win + " + xWins + "o Wins : " + oWins);
+
+		
+		});
 	}
 
 	public static void main(String[] args) {
