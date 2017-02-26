@@ -76,18 +76,36 @@ public class TicTacToeApp extends Application {
 	}
 
 	/**
-	 * this method get called after each turn,and after we have a winner - to
-	 * restart the game
+	 * 
+	 * this method first check if there is no empty tile - restart the game get
+	 * called after each turn,and after we have a winner - to restart the game
 	 */
 
 	protected static void checkState() {
+
+		byte countOfEmptyPlace = 0;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+
+				if (board[i][j].getText().getText().isEmpty()) {
+					countOfEmptyPlace++;
+				}
+			}
+		}
+
+		// if all tiles are not empty
+		if (countOfEmptyPlace == 0) {
+			neadNewGame = true;
+		}
 
 		if (neadNewGame) {
 
 			new TicTacToeApp().clearTheCurrentGame();
 
 		} else {
+
 			for (Combo combo : combos) {
+
 				if (combo.isComplete()) {
 					playable = false;
 
@@ -106,7 +124,7 @@ public class TicTacToeApp extends Application {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				board[i][j].clear();
-				System.out.println("clear");
+
 			}
 		}
 		neadNewGame = false;
