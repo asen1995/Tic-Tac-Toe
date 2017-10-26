@@ -11,7 +11,7 @@ public class ExitWindow extends Stage {
 
 	public void display(String title, byte xWins, byte oWins, Stage gameStage) {
 
-		Pane pane = new Pane();
+		Pane pane =       new Pane();
 		Button yes = new Button("Yes");
 		yes.setTranslateX(350-90);
 		yes.setTranslateY(50);
